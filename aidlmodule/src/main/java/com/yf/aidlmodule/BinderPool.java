@@ -1,4 +1,4 @@
-package com.yf.binderpooldemo.server;
+package com.yf.aidlmodule;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -8,12 +8,12 @@ import android.os.IBinder;
 import android.os.Process;
 import android.os.RemoteException;
 
-import com.yf.aidlmodule.IBinderPool;
-import com.yf.binderpooldemo.AppConfig;
-import com.yf.binderpooldemo.server.binders.Music;
-import com.yf.binderpooldemo.server.binders.Phone;
-import com.yf.binderpooldemo.server.binders.Radio;
-import com.yf.binderpooldemo.utils.LogUtils;
+
+import com.yf.aidlmodule.binders.Music;
+import com.yf.aidlmodule.binders.Phone;
+import com.yf.aidlmodule.binders.Radio;
+import com.yf.aidlmodule.utils.AppConfig;
+import com.yf.aidlmodule.utils.LogUtils;
 
 import java.util.concurrent.CountDownLatch;
 
@@ -50,13 +50,13 @@ public class BinderPool
     }
 
     public IBinder queryBinder(int binderCode) throws RemoteException {
-        LogUtils.e("queryBinder ----Thread="+Thread.currentThread().getName()+" ----Pid="+ Process.myPid());
+        LogUtils.e("queryBinder ----Thread=" + Thread.currentThread().getName() + " ----Pid=" + Process.myPid());
         return binderPool.queryBinder(binderCode);
     }
 
     private synchronized void connectToRemoteService(Context context) {
-        LogUtils.e("connectToRemoteService ----Thread="+Thread.currentThread().getName()+" ----Pid="+ Process.myPid());
-        Intent intent = new Intent(context, RemoteService.class);
+        LogUtils.e("connectToRemoteService ----Thread=" + Thread.currentThread().getName() + " ----Pid=" + Process.myPid());
+        Intent intent = new Intent(AppConfig.AppAction.ACTION_REMOTE_SERVICE);
         context.bindService(intent, this, Context.BIND_AUTO_CREATE);
 
         //此类是用来线程等待的，等待绑定远程的服务返回Binder才释放
@@ -115,17 +115,17 @@ public class BinderPool
          */
         @Override
         public IBinder queryBinder(int binderCode) throws RemoteException {
-            LogUtils.e("IBinderPoolImp   queryBinder ----Thread="+Thread.currentThread().getName()+" ----Pid="+ Process.myPid());
+            LogUtils.e("IBinderPoolImp   queryBinder ----Thread=" + Thread.currentThread().getName() + " ----Pid=" + Process.myPid());
             IBinder binder = null;
             switch (binderCode) {
                 case AppConfig.BinderCode.CODE_BINDER_MUSIC:
-                    binder=new Music();
+                    binder = new Music();
                     break;
                 case AppConfig.BinderCode.CODE_BINDER_RADIO:
-                    binder=new Radio();
+                    binder = new Radio();
                     break;
                 case AppConfig.BinderCode.CODE_BINDER_PHONE:
-                    binder=new Phone();
+                    binder = new Phone();
                     break;
             }
             return binder;

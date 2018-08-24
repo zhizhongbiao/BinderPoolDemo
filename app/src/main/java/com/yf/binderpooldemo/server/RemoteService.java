@@ -5,9 +5,10 @@ import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
 import android.os.Process;
-import android.support.annotation.Nullable;
 
-import com.yf.binderpooldemo.utils.LogUtils;
+import com.yf.aidlmodule.BinderPool;
+import com.yf.aidlmodule.utils.LogUtils;
+
 
 /**
  * FileName :  RemoteService

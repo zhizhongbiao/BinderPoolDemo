@@ -10,10 +10,11 @@ import android.view.View;
 import com.yf.aidlmodule.IMusic;
 import com.yf.aidlmodule.IPhone;
 import com.yf.aidlmodule.IRadio;
-import com.yf.binderpooldemo.AppConfig;
+import com.yf.aidlmodule.utils.AppConfig;
+import com.yf.aidlmodule.utils.LogUtils;
 import com.yf.binderpooldemo.R;
-import com.yf.binderpooldemo.server.BinderPool;
-import com.yf.binderpooldemo.utils.LogUtils;
+import com.yf.aidlmodule.BinderPool;
+
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;

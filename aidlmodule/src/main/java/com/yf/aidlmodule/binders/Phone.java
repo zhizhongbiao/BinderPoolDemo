@@ -1,10 +1,11 @@
-package com.yf.binderpooldemo.server.binders;
+package com.yf.aidlmodule.binders;
 
 import android.os.Process;
 import android.os.RemoteException;
 
 import com.yf.aidlmodule.IPhone;
-import com.yf.binderpooldemo.utils.LogUtils;
+import com.yf.aidlmodule.utils.LogUtils;
+
 
 /**
  * FileName :  Phone

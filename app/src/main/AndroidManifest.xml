@@ -18,11 +18,16 @@
 
 
         <!--注意定义进程的时候，进程名字前面必须要有冒号：，否者报出manifest格式出错-->
-        <service android:name=".server.RemoteService"
+        <service
+            android:name=".server.RemoteService"
             android:enabled="true"
             android:exported="true"
-            android:process=":RemoteService"
-            />
+            android:process=":RemoteService">
+            <intent-filter>
+                <action android:name="com.yf.binderpooldemo.action.REMOTE_SERVICE" />
+            </intent-filter>
+
+        </service>
     </application>
 
 </manifest>
